@@ -117,6 +117,16 @@
   }
   @keyframes blink { 50% { opacity: 0; } }
 
+  .btn-cv {
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    font-family: var(--font-mono); font-weight: 600; font-size: 0.82rem;
+    color: var(--bg); background: var(--accent);
+    border: none; border-radius: 6px; padding: 0.7rem 0.85rem;
+    text-decoration: none; transition: opacity 0.15s ease;
+  }
+  .btn-cv:hover { opacity: 0.88; }
+  .btn-cv svg { width: 14px; height: 14px; }
+
   .side-contact { display: flex; flex-direction: column; gap: 0.5rem; }
   .side-contact a, .side-contact span {
     display: flex; align-items: center; gap: 0.55rem;
