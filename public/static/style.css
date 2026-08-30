@@ -118,14 +118,14 @@
   @keyframes blink { 50% { opacity: 0; } }
 
   .btn-cv {
-    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-    font-family: var(--font-mono); font-weight: 600; font-size: 0.82rem;
-    color: var(--bg); background: var(--accent);
-    border: none; border-radius: 6px; padding: 0.7rem 0.85rem;
-    text-decoration: none; transition: opacity 0.15s ease;
+    display: inline-flex; align-self: flex-start; align-items: center; gap: 0.3rem;
+    font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent);
+    border: 1px solid var(--accent-soft-strong); background: var(--accent-soft);
+    border-radius: 4px; padding: 0.32rem 0.5rem;
+    text-decoration: none; transition: background 0.15s ease, border-color 0.15s ease;
   }
-  .btn-cv:hover { opacity: 0.88; }
-  .btn-cv svg { width: 14px; height: 14px; }
+  .btn-cv:hover { background: var(--accent-soft-strong); border-color: var(--accent); }
+  .btn-cv svg { width: 10px; height: 10px; }
 
   .side-contact { display: flex; flex-direction: column; gap: 0.5rem; }
   .side-contact a, .side-contact span {
@@ -214,7 +214,7 @@
     width: 40px;
     height: 40px;
     border-radius: 8px;
-    background: var(--panel-2);
+    background: #FFFFFF;
     border: 1px solid var(--line);
     display: flex;
     align-items: center;
