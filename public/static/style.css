@@ -15,7 +15,7 @@
     --font-body: 'Work Sans', 'Segoe UI', sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-    --sidebar-w: 300px;
+    --sidebar-w: 340px;
   }
 
   * { box-sizing: border-box; }
@@ -90,7 +90,7 @@
     font-weight: 700;
     font-size: 1.15rem;
     line-height: 1.2;
-    margin: 0 0 0.3rem;
+    margin: 0.4rem 0 0.3rem;
   }
   .identity .role {
     font-family: var(--font-mono);
