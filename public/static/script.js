@@ -119,3 +119,51 @@
 
     applyLang(initialLang);
   })();
+
+  (function () {
+    var reduceMotion = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Scroll-reveal for cards and timeline entries.
+    var revealTargets = document.querySelectorAll(
+      ".t-item, .project-card, .cert-card, .skill-group, .lang-item"
+    );
+    revealTargets.forEach(function (el, i) {
+      el.classList.add("reveal");
+      el.style.transitionDelay = (Math.min(i % 6, 5) * 70) + "ms";
+    });
+
+    if (revealTargets.length) {
+      if (!reduceMotion && "IntersectionObserver" in window) {
+        var revealObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in-view");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+        revealTargets.forEach(function (el) { revealObserver.observe(el); });
+      } else {
+        revealTargets.forEach(function (el) { el.classList.add("in-view"); });
+      }
+    }
+
+    // Scrollspy: highlight the current section in the sidebar nav.
+    var navLinks = document.querySelectorAll(".side-nav a[href^='#']");
+    var sections = Array.prototype.map.call(navLinks, function (a) {
+      return document.querySelector(a.getAttribute("href"));
+    }).filter(Boolean);
+
+    if (sections.length && "IntersectionObserver" in window) {
+      var spyObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var link = document.querySelector(".side-nav a[href='#" + entry.target.id + "']");
+          if (!link || !entry.isIntersecting) return;
+          navLinks.forEach(function (l) { l.classList.remove("active"); });
+          link.classList.add("active");
+        });
+      }, { rootMargin: "-40% 0px -55% 0px", threshold: 0 });
+      sections.forEach(function (s) { spyObserver.observe(s); });
+    }
+  })();
