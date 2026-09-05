@@ -167,3 +167,24 @@
       sections.forEach(function (s) { spyObserver.observe(s); });
     }
   })();
+
+  (function () {
+    // Mobile menu toggle: reveals contact info and nav links on small screens.
+    var menuToggle = document.getElementById("menuToggle");
+    var sidebar = document.querySelector(".sidebar");
+    if (!menuToggle || !sidebar) return;
+
+    function closeMenu() {
+      sidebar.classList.remove("menu-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    }
+
+    menuToggle.addEventListener("click", function () {
+      var isOpen = sidebar.classList.toggle("menu-open");
+      menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    sidebar.querySelectorAll(".side-nav a").forEach(function (a) {
+      a.addEventListener("click", closeMenu);
+    });
+  })();
