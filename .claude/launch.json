@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio-web",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["app.py", "local"],
+      "port": 8000
+    }
+  ]
+}
