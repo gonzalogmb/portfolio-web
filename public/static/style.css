@@ -177,7 +177,7 @@
 
   /* ---------- Main content ---------- */
 
-  .main { flex: 1; min-width: 0; max-width: 900px; padding: 3rem 3rem 5rem; }
+  .main { flex: 1; min-width: 0; max-width: 1050px; padding: 3rem 3rem 5rem; }
 
   .hero-line {
     font-family: var(--font-mono);
@@ -323,7 +323,7 @@
 
   /* ---------- Projects ---------- */
 
-  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.1rem; }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.1rem; }
   .project-card {
     display: flex; flex-direction: column; gap: 0.85rem;
     background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
