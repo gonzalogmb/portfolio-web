@@ -1,12 +1,15 @@
-<!-- Design plan (v2 — alternative direction, deliberately dark, single-look)
-Color: --bg #0E1116 (near-black indigo), --panel #151A21, --panel-2 #1B222B, --ink #E8EAED,
-       --ink-soft #8A93A0, --line #262E38, --accent #F5A623 (terminal amber), --accent-2 #4FA8FF
-       (electric blue, secondary). No light/dark toggle — this design commits to one console-inspired look.
+<!-- Design plan (v3 — "Ámbar": warm-neutral ground, single amber accent, sidebar on the right)
+Color: --bg #121110 (warm near-black, no blue cast), --panel #1B1917, --panel-2 #231F1C,
+       --ink #EDEAE5, --ink-soft #938B80, --line #2A2724, --accent #F5A623 (terminal amber,
+       the only chromatic voice), --accent-2 #D98A5A (desaturated clay, same family).
+       No light/dark toggle — this design commits to one warm console-inspired look.
 Type: display = Manrope (tight geometric headings), body = Work Sans (humanist, readable long-form),
       mono = JetBrains Mono (dates, labels, tags — the "terminal" register).
-Layout: fixed left console sidebar (photo, identity, contact, nav) + a right content column built as a
-        vertical timeline for experience/education, with section headers styled like code comments.
-        Collapses to a top bar + stacked content under 900px.
+Layout: console sidebar on the RIGHT (photo, identity, contact, nav), right-aligned, with the
+        active-nav rail on its right edge; content column centred in the space to its left.
+        Section headers are sticky translucent chrome that hand over section to section.
+        Skills and projects are hairline rows rather than card grids — denser, quieter.
+        Collapses to a top bar + stacked content under 900px, where the mirroring unwinds.
 -->
 <html lang="en">
 <head>
@@ -29,8 +32,8 @@ Layout: fixed left console sidebar (photo, identity, contact, nav) + a right con
 <meta name="twitter:image" content="https://gonzalomartinezberzal.com/static/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="static/style.css?v=11">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@500;600;700;800&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="static/style.css?v=14">
 </head>
 <body>
 
@@ -70,10 +73,7 @@ Layout: fixed left console sidebar (photo, identity, contact, nav) + a right con
       <svg class="icon-close" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
     </button>
 
-    <div class="prompt-line">
-      <span class="p">$</span> whoami<br>
-      <span data-i18n="promptLine">3+ yrs · PySpark · AWS · GCP</span><span class="cursor"></span>
-    </div>
+    <p class="credential" data-i18n="promptLine">3+ yrs · PySpark · AWS · GCP</p>
 
     <a class="btn-cv" href="static/cv-gonzalo-martinez-berzal.pdf" download>
       <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5v8.5m0 0L5 7m3 3l3-3M2.5 12.5v1a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -111,7 +111,7 @@ Layout: fixed left console sidebar (photo, identity, contact, nav) + a right con
 
   <main class="main">
     <section id="summary">
-      <p class="hero-line" data-i18n="heroLine">// Portfolio — updated September 2026</p>
+      <p class="hero-line" data-i18n="heroLine">Portfolio — updated August 2026</p>
       <h1 class="headline"><span class="accent">Data Analyst / Data Engineer</span> building pipelines that hold up in production.</h1>
       <p class="summary-text" data-i18n="summaryText">Data Analyst / Data Engineer with 3+ years of experience building PySpark data pipelines on AWS and GCP for enterprise financial institutions. Proven track record designing NLP and Large Language Model (LLM) solutions, leading large-scale cloud data migrations, and coordinating Agile workflows across global teams. Master's in Data Science and AI — AWS Certified Cloud Practitioner.</p>
     </section>
@@ -354,7 +354,7 @@ Layout: fixed left console sidebar (photo, identity, contact, nav) + a right con
   </main>
 </div>
 
-<script src="static/script.js?v=2"></script>
+<script src="static/script.js?v=3"></script>
 
 </body>
 </html>

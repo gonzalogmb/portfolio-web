@@ -1,7 +1,7 @@
 (function () {
     var STRINGS = {
       en: {
-        heroLine: "// Portfolio — updated August 2026",
+        heroLine: "Portfolio — updated August 2026",
         promptLine: "3+ yrs · PySpark · AWS · GCP",
         madridSpain: "Madrid, Spain",
         downloadCv: "Download CV",
@@ -47,7 +47,7 @@
         langEnglishName: "English", langEnglishLevel: "— Professional working proficiency"
       },
       es: {
-        heroLine: "// Portfolio profesional — actualizado agosto 2026",
+        heroLine: "Portfolio profesional — actualizado agosto 2026",
         promptLine: "3+ años · PySpark · AWS · GCP",
         madridSpain: "Madrid, España",
         downloadCv: "Descargar CV",
