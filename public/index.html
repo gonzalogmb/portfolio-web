@@ -33,7 +33,7 @@ Layout: console sidebar on the RIGHT (photo, identity, contact, nav), right-alig
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@500;600;700;800&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="static/style.css?v=14">
+<link rel="stylesheet" href="static/style.css?v=15">
 </head>
 <body>
 
@@ -76,7 +76,11 @@ Layout: console sidebar on the RIGHT (photo, identity, contact, nav), right-alig
     <p class="credential" data-i18n="promptLine">3+ yrs · PySpark · AWS · GCP</p>
 
     <a class="btn-cv" href="static/cv-gonzalo-martinez-berzal.pdf" download>
-      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5v8.5m0 0L5 7m3 3l3-3M2.5 12.5v1a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path class="cv-arrow" d="M8 1.5v8.5m0 0L5 7m3 3l3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="cv-check" d="M4.8 7.6 7 9.8 11.4 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="cv-tray" d="M2.5 12.5v1a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
       <span data-i18n="downloadCv">Download CV</span>
     </a>
 
@@ -354,7 +358,7 @@ Layout: console sidebar on the RIGHT (photo, identity, contact, nav), right-alig
   </main>
 </div>
 
-<script src="static/script.js?v=3"></script>
+<script src="static/script.js?v=4"></script>
 
 </body>
 </html>

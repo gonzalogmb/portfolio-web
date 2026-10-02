@@ -170,6 +170,27 @@
     }
   })();
 
+  // Download feedback. The browser gives no event for "the file arrived", so
+  // the button plays a fixed confirmation and resets itself; the download
+  // itself is never blocked.
+  (function () {
+    var cvBtn = document.querySelector(".btn-cv");
+    if (!cvBtn) return;
+    var resetTimer;
+
+    cvBtn.addEventListener("click", function () {
+      cvBtn.classList.remove("is-downloading");
+      // Force a reflow so a second click restarts the animation instead of
+      // being swallowed as "the class is already there".
+      void cvBtn.offsetWidth;
+      cvBtn.classList.add("is-downloading");
+      clearTimeout(resetTimer);
+      resetTimer = setTimeout(function () {
+        cvBtn.classList.remove("is-downloading");
+      }, 1600);
+    });
+  })();
+
   (function () {
     // Mobile menu toggle: reveals contact info and nav links on small screens.
     var menuToggle = document.getElementById("menuToggle");

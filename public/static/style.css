@@ -158,7 +158,49 @@
   }
   .btn-cv:hover { background: #FFB63F; border-color: #FFB63F; transform: translateY(-1px); }
   .btn-cv:active { transform: translateY(0) scale(0.96); }
-  .btn-cv svg { width: 10px; height: 10px; }
+  .btn-cv svg { width: 13px; height: 13px; }
+
+  /* Download feedback. The arrow falls into the tray, the tray takes the hit,
+     the tick lands. Everything is transform/opacity, the whole thing is under
+     600ms, and the button never changes size — so the sidebar never reflows. */
+  .btn-cv { position: relative; overflow: hidden; }
+  .btn-cv svg path { transform-box: fill-box; transform-origin: center; }
+  .btn-cv .cv-check { opacity: 0; }
+
+  .btn-cv::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(-101%);
+    pointer-events: none;
+  }
+
+  .btn-cv.is-downloading .cv-arrow { animation: cvArrowDrop 240ms var(--ease-out) forwards; }
+  .btn-cv.is-downloading .cv-tray  { animation: cvTrayDip 200ms var(--ease-out) 200ms; }
+  .btn-cv.is-downloading .cv-check { animation: cvCheckIn 260ms var(--ease-out) 300ms forwards; }
+  .btn-cv.is-downloading::after    { animation: cvSweep 560ms var(--ease-out); }
+
+  /* Opacity is held flat until the end of the fall: with the easing applied to
+     both at once the arrow was invisible by the midpoint and never read as
+     falling at all. */
+  @keyframes cvArrowDrop {
+    0%   { transform: translateY(0); opacity: 1; }
+    65%  { opacity: 1; }
+    100% { transform: translateY(4px); opacity: 0; }
+  }
+  @keyframes cvTrayDip {
+    0%   { transform: translateY(0); }
+    45%  { transform: translateY(1.2px); }
+    100% { transform: translateY(0); }
+  }
+  @keyframes cvCheckIn {
+    from { opacity: 0; transform: scale(0.6); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes cvSweep {
+    to { transform: translateX(101%); }
+  }
 
   .side-contact { display: flex; flex-direction: column; gap: 0.5rem; }
   .side-contact a, .side-contact span {
@@ -261,6 +303,10 @@
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+  }
+  @keyframes fadeOutInPlace {
+    from { opacity: 1; }
+    to { opacity: 0; }
   }
   .avatar-block, .identity .role, .credential, .btn-cv,
   .hero-line, .headline, .summary-text {
@@ -544,6 +590,13 @@
       animation: fadeIn var(--dur-hover) var(--ease-out) both;
     }
     .reveal { transform: none; transition: opacity var(--dur-hover) var(--ease-out); }
+
+    /* The download still confirms itself, but nothing falls or sweeps:
+       the arrow cross-fades into the tick in place. */
+    .btn-cv.is-downloading .cv-arrow { animation: fadeOutInPlace var(--dur-hover) var(--ease-out) forwards; }
+    .btn-cv.is-downloading .cv-tray { animation: none; }
+    .btn-cv.is-downloading .cv-check { animation: fadeIn var(--dur-hover) var(--ease-out) var(--dur-hover) forwards; }
+    .btn-cv.is-downloading::after { animation: none; }
 
     /* Hover lifts stop travelling; their colour feedback is kept. */
     .avatar-block:hover .avatar,
