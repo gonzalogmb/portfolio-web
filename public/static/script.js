@@ -170,6 +170,58 @@
     }
   })();
 
+  // Launch feedback on the demo links, split across the tab switch.
+  //
+  // Pointer-down, not click: the departure has to be on screen before the new
+  // tab steals focus, and press is the earliest honest moment. The arrival is
+  // deferred until this page is visible again, because a background tab has
+  // its animations frozen — playing it on click would animate nothing.
+  (function () {
+    var demos = document.querySelectorAll(".btn-demo");
+    if (!demos.length) return;
+
+    var pending = null;
+    var restoreTimer;
+
+    function settle(btn) {
+      btn.classList.remove("is-leaving", "is-returning");
+    }
+
+    demos.forEach(function (btn) {
+      btn.addEventListener("pointerdown", function () {
+        settle(btn);
+        void btn.offsetWidth;
+        btn.classList.add("is-leaving");
+        pending = btn;
+
+        // If the visitor never actually leaves — press cancelled, popup
+        // blocked, middle-click into a tab they ignore — the arrow must not
+        // stay missing.
+        clearTimeout(restoreTimer);
+        restoreTimer = setTimeout(function () {
+          if (!pending) return;
+          arrive();
+        }, 2500);
+      });
+    });
+
+    function arrive() {
+      if (!pending) return;
+      var btn = pending;
+      pending = null;
+      clearTimeout(restoreTimer);
+      settle(btn);
+      void btn.offsetWidth;
+      btn.classList.add("is-returning");
+      setTimeout(function () { settle(btn); }, 400);
+    }
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible") arrive();
+    });
+    window.addEventListener("focus", arrive);
+  })();
+
   // Download feedback. The browser gives no event for "the file arrived", so
   // the button plays a fixed confirmation and resets itself; the download
   // itself is never blocked.

@@ -499,6 +499,27 @@
   .btn-link.btn-demo { color: var(--accent); border-color: var(--accent-soft-strong); background: var(--accent-soft); }
   .btn-link.btn-demo:hover { background: var(--accent-soft-strong); border-color: var(--accent); }
 
+  /* Launch feedback, split across the tab switch. A single animation here is
+     never seen: the new tab takes focus within a few frames, and a background
+     tab has its animations frozen by the browser. So the arrow leaves on
+     pointer-down — before navigation, while this page is still the one being
+     looked at — and comes back only when the visitor returns from the demo.
+     The departure and the arrival each sit on the side of the jump where
+     there is actually someone watching. */
+  .btn-demo.is-leaving svg { animation: demoOut 200ms var(--ease-out) forwards; }
+  .btn-demo.is-returning svg { animation: demoIn 320ms var(--ease-out); }
+
+  @keyframes demoOut {
+    0%   { transform: translate(0, 0); opacity: 1; }
+    70%  { opacity: 1; }
+    100% { transform: translate(5px, -5px); opacity: 0; }
+  }
+  @keyframes demoIn {
+    0%   { transform: translate(-5px, 5px); opacity: 0; }
+    30%  { opacity: 1; }
+    100% { transform: translate(0, 0); opacity: 1; }
+  }
+
   /* ---------- Certifications & languages ---------- */
 
   .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.1rem; margin-bottom: 2rem; }
@@ -590,6 +611,10 @@
       animation: fadeIn var(--dur-hover) var(--ease-out) both;
     }
     .reveal { transform: none; transition: opacity var(--dur-hover) var(--ease-out); }
+
+    /* Launch and return still register, but nothing travels. */
+    .btn-demo.is-leaving svg { animation: fadeOutInPlace var(--dur-hover) var(--ease-out) forwards; }
+    .btn-demo.is-returning svg { animation: fadeIn var(--dur-hover) var(--ease-out); }
 
     /* The download still confirms itself, but nothing falls or sweeps:
        the arrow cross-fades into the tick in place. */
